@@ -1,31 +1,29 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 
+using Microsoft.Extensions.Configuration;
 using TalkingClock.ConsoleApp;
 
+var configuration = new ConfigurationBuilder().AddJsonFile(($"appsettings.json"));
+var config = configuration.Build();
+var isSpeechEnabled = config.GetSection("SpeechEnabled").Value == "True";
+var addMeridiem = config.GetSection("AddMeridiem").Value == "True";
 
+string timeOutput;
 
-
-var timeWords = DateTime.Now.ToShortTimeString();
-if (args is { Length: > 0 })
+try
 {
-   var isDateTime = DateTime.TryParse(args[0], out _);
-  
-   if (isDateTime)
-   {
-       timeWords = args[0];
-   }
-   else
-   {
-        Console.WriteLine($"{args[0]} is not a valid time format. Please try again using format HH:mm eg 16:30.");
-        return;
-   }
+    timeOutput = ConvertTimeToWords.ConvertDateTime(args is { Length: > 0 } ? args[0] : "", addMeridiem);
+}
+catch (FormatException ex)
+{
+    isSpeechEnabled = false;
+    timeOutput = ex.Message;
 }
 
-var timeOutput = ConvertTimeToWords.ConvertDateTime(timeWords);
+if (isSpeechEnabled) SpeakingClock.Run(timeOutput);
 
-Console.WriteLine("-----------------------\r\n");
-Console.WriteLine(timeOutput);
-Console.WriteLine("\r\n-----------------------\r\n");
+Console.WriteLine(WriteTime.Run(timeOutput));
+
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();

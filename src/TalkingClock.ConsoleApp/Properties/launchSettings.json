@@ -1,8 +1,7 @@
 {
   "profiles": {
     "TalkingClock.ConsoleApp": {
-      "commandName": "Project",
-      "commandLineArgs": "13:45"
+      "commandName": "Project"
     }
   }
 }

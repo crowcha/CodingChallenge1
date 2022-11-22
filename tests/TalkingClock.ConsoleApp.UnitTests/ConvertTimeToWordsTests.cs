@@ -20,6 +20,26 @@ public class ConvertTimeToWordsTests
     }
 
     [Test]
+    public void Should_return_human_friendly_time_without_meridiem()
+    {
+        var timeParam = "16:30";
+        var result = ConvertTimeToWords.ConvertDateTime(timeParam, false);
+        result.ShouldNotBeEmpty();
+        result.ShouldBe("Half past four");
+    }
+
+    [Test]
+    public void Should_return_correct_time_output()
+    {
+        var timeParam = "16:30";
+        var timeOutput = ConvertTimeToWords.ConvertDateTime(timeParam);
+        var result = WriteTime.Run(timeOutput);
+        result.ShouldNotBeEmpty();
+        result.ShouldBe($"-----------------------\r\n{timeOutput}\r\n-----------------------\r\n");
+    }
+
+
+    [Test]
     public void Should_throw_FormatException_with_invalid_param()
     {
         var timeParam = "1345";
