@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TalkingClock.ConsoleApp.Extensions;
+﻿using TalkingClock.ConsoleApp.Extensions;
 
 namespace TalkingClock.ConsoleApp;
 
@@ -21,8 +15,9 @@ public static class ConvertTimeToWords
         "Twenty nine","Thirty"
     };
 
-    public static string ConvertDateTime(string shortDateTime)
+    public static string ConvertDateTime(string shortDateTime="", bool addMeridiem = true)
     {
+        if (shortDateTime == "") shortDateTime = DateTime.Now.ToShortTimeString();
         //Convert 24 hour clock to 12 hour and extract AM/PM
         string? time12;
         try
@@ -38,28 +33,28 @@ public static class ConvertTimeToWords
         var time = time12.Split(":");
         Int32.TryParse(time[0], out var hours);
         Int32.TryParse(time[1], out var minutes);
-        var ampm = time[2];
+        var meridiem = addMeridiem ? $" {time[2]}" : "";
         var minute = string.Empty;
         var hour = HourArray[hours];
 
         if (minutes < 1)
-            return $"{hour} o'clock {ampm}";
+            return $"{hour} o'clock {meridiem}";
         else if (minutes == 15)
-            return $"Quarter past {hour.ToLower()} {ampm}";
+            return $"Quarter past {hour.ToLower()}{meridiem}";
         else if (minutes == 30)
-            return $"Half past {hour.ToLower()} {ampm}";
+            return $"Half past {hour.ToLower()}{meridiem}";
         else if (minutes == 45)
-            return $"Quarter to {hour.ToLower()} {ampm}";
+            return $"Quarter to {hour.ToLower()}{meridiem}";
         else if (minutes is >= 1 and < 30)
         {
             minute =  MinuteArray[minutes];
-            return $"{minute} past {hour.ToLower()} {ampm}";
+            return $"{minute} past {hour.ToLower()}{meridiem}";
         }
         else //minutes > 30 and !45
         {
             var intMinute =  60 - minutes;
             minute = MinuteArray[intMinute];
-            return $"{minute} to {hour.ToLower()} {ampm}";
+            return $"{minute} to {hour.ToLower()}{meridiem}";
         }
 
     }
