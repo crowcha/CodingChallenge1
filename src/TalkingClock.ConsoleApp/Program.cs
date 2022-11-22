@@ -21,9 +21,10 @@ catch (FormatException ex)
     timeOutput = ex.Message;
 }
 
+Console.WriteLine(WriteTime.Run(timeOutput));
+
 if (isSpeechEnabled) SpeakingClock.Run(timeOutput);
 
-Console.WriteLine(WriteTime.Run(timeOutput));
 
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
