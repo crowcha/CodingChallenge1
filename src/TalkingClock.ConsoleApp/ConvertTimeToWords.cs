@@ -8,7 +8,7 @@ using TalkingClock.ConsoleApp.Extensions;
 
 namespace TalkingClock.ConsoleApp;
 
-internal static class ConvertTimeToWords
+public static class ConvertTimeToWords
 {
     private static readonly string[] HourArray =
         { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve" };
@@ -21,10 +21,19 @@ internal static class ConvertTimeToWords
         "Twenty nine","Thirty"
     };
 
-    internal static string ConvertDateTime(string shortDateTime)
+    public static string ConvertDateTime(string shortDateTime)
     {
         //Convert 24 hour clock to 12 hour and extract AM/PM
-        var time12 = shortDateTime.ConvertFromToTime("HH:mm", "h:mm:tt");
+        string? time12;
+        try
+        {
+            time12 = shortDateTime.ConvertFromToTime("HH:mm", "h:mm:tt");
+        }
+        catch (Exception ex)
+        {
+            if(ex is System.FormatException)  throw new System.FormatException($"{ex.Message} Please enter time in format HH:mm e.g 16:30");
+            throw;
+        }
 
         var time = time12.Split(":");
         Int32.TryParse(time[0], out var hours);

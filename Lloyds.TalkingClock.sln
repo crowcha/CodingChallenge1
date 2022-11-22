@@ -5,7 +5,11 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9199DAE9-1B32-48BB-A971-F307F68AF0F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalkingClock.ConsoleApp", "src\TalkingClock.ConsoleApp\TalkingClock.ConsoleApp.csproj", "{8A11B321-5580-4E04-B2AA-35B5A9199087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TalkingClock.ConsoleApp", "src\TalkingClock.ConsoleApp\TalkingClock.ConsoleApp.csproj", "{8A11B321-5580-4E04-B2AA-35B5A9199087}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8BD1AD71-999E-4EC5-8632-F1A01CB20910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TalkingClock.ConsoleApp.UnitTests", "tests\TalkingClock.ConsoleApp.UnitTests\TalkingClock.ConsoleApp.UnitTests.csproj", "{963157DF-7E4A-423F-B4BB-E080EA680706}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +21,17 @@ Global
 		{8A11B321-5580-4E04-B2AA-35B5A9199087}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A11B321-5580-4E04-B2AA-35B5A9199087}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A11B321-5580-4E04-B2AA-35B5A9199087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{963157DF-7E4A-423F-B4BB-E080EA680706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{963157DF-7E4A-423F-B4BB-E080EA680706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{963157DF-7E4A-423F-B4BB-E080EA680706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{963157DF-7E4A-423F-B4BB-E080EA680706}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8A11B321-5580-4E04-B2AA-35B5A9199087} = {9199DAE9-1B32-48BB-A971-F307F68AF0F8}
+		{963157DF-7E4A-423F-B4BB-E080EA680706} = {8BD1AD71-999E-4EC5-8632-F1A01CB20910}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCA6026B-A8D5-4F55-90AE-3D57C722CAD6}

@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Speech.Synthesis;
+
 using TalkingClock.ConsoleApp;
 
 
@@ -17,18 +17,14 @@ if (args is { Length: > 0 })
    }
    else
    {
-        Console.WriteLine($"{args[0]} is not a valid time format. Please try again.");
+        Console.WriteLine($"{args[0]} is not a valid time format. Please try again using format HH:mm eg 16:30.");
         return;
    }
 }
 
 var timeOutput = ConvertTimeToWords.ConvertDateTime(timeWords);
-SpeechSynthesizer spokenTime = new();
-spokenTime.Volume = 100;
-spokenTime.Rate = 0;
-spokenTime.Speak($"The time sponsored by Lloyds is {timeOutput}");
 
-Console.WriteLine("The time sponsored by Lloyds is:\r\n-----------------------\r\n");
+Console.WriteLine("-----------------------\r\n");
 Console.WriteLine(timeOutput);
 Console.WriteLine("\r\n-----------------------\r\n");
 Console.WriteLine("Press any key to exit");
