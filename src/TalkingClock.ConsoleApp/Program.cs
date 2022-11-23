@@ -23,7 +23,7 @@ catch (FormatException ex)
 
 Console.WriteLine(WriteTime.Run(timeOutput));
 
-if (isSpeechEnabled) SpeakingClock.Run(timeOutput);
+SpeakingClock.Run(timeOutput, isSpeechEnabled);
 
 
 Console.WriteLine("Press any key to exit");
