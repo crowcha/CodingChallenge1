@@ -50,10 +50,10 @@ public static class ConvertTimeToWords
             minute =  MinuteArray[minutes];
             return $"{minute} past {hour.ToLower()}{meridiem}";
         }
-        else //minutes > 30 and !45
+        else
         {
             var intMinute =  60 - minutes;
-            var intHour = hours+1;
+            var intHour = hours==12?1:hours+1;
             hour = HourArray[intHour];
             minute = MinuteArray[intMinute];
             return $"{minute} to {hour.ToLower()}{meridiem}";
